@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""user models"""
-
-from sqlalchemy import Column, INteger, String
-from sqlachemy.ext.declarative import declarative_base
+"""user model's
+"""
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
 
 Base = declarative_base()
 
 
 class User(Base):
-    """Create user table """
+    """ a record from the user table.
+    """
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     email = Column(String(250), nullable=False)
