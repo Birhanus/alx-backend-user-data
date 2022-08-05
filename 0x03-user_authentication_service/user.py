@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+#!/usr/bin/env python3
 """user models"""
 
 from sqlalchemy import Column, INteger, String
@@ -16,4 +16,3 @@ class User(Base):
     hashed_password = Column(String(250), nullable=False)
     session_id = Column(String(250), nullable=True)
     reset_token = Column(String(250), nullable=True)
-
