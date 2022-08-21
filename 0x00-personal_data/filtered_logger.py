@@ -3,7 +3,7 @@
 import re
 
 
-def filter_datum(fields: str, redaction: str, message: str,
+def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """fuction called filter_datum that retun the log message obfuscated"""
     for a in fields:
