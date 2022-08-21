@@ -5,6 +5,9 @@ from typing import List
 import logging
 
 
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
+
 def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """fuction called filter_datum that retun the log message obfuscated"""
