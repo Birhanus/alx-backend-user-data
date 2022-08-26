@@ -43,6 +43,8 @@ def forbidden(error) -> str:
 
 @app.before_request
 def before_request():
+    """execute before any request
+    """
     if auth is None:
         return
     excluded_paths = ['/api/v1/status/',
