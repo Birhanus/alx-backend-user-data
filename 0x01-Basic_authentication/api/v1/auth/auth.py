@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Auth module"""
 from flask import Flask, request
-from typing import List,  TypeVar
+from typing import List, TypeVar
 
 
 class Auth:
@@ -17,9 +17,12 @@ class Auth:
         if path not in excluded_paths:
             return True
 
-    def authorization_header(self, reuest=None) -> str:
+    def authorization_header(self, request=None) -> str:
         """authorization header"""
-        return None
+        if request is None:
+            return None
+
+        return request.headers.get("Authorization", None)
 
     def current_user(self, request=None) -> TypeVar('User'):
         """return current user"""
