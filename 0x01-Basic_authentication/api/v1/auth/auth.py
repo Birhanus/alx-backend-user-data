@@ -8,18 +8,18 @@ class Auth:
     """calss to manage the API authentication"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """require auth"""
-        if path is None:
-            return True
-        if excluded_paths is None:
-            return True
-        if path in excluded_paths or path + "/" in excluded_paths:
-            return False
-        if path not in excluded_paths:
-            return True
-        for e_path in excluded_paths:
-            if e_path.endswith('*'):
-                if path.startswith(i[:1]):
+        if path is not None and excluded_paths is not None:
+            for exclusion_path in map(lambda x: x.strip(), excluded_paths):
+                pattern = ''
+                if exclusion_path[-1] == '*':
+                    pattern = '{}.*'.format(exclusion_path[0:-1])
+                elif exclusion_path[-1] == '/':
+                    pattern = '{}/*'.format(exclusion_path[0:-1])
+                else:
+                    pattern = '{}/*'.format(exclusion_path)
+                if re.match(pattern, path):
                     return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """authorization header"""
