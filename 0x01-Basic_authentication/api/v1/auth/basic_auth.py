@@ -52,10 +52,10 @@ class BasicAuth(Auth):
                 pattern,
                 decoded_base64_authorization_header.strip(),
             )
-        if field_match is not None:
-            user = field_match.group('user')
-            password = field_match.group('password')
-            return user, password
+            if field_match is not None:
+                user = field_match.group('user')
+                password = field_match.group('password')
+                return user, password
         return None, None
 
     def user_object_from_credentials(self, user_email: str, user_pwd:
